@@ -1,7 +1,7 @@
 # Budget vs Actuals Analysis Using PostgreSQL
 
 ## Project Highlights 
-- **SQL Concepts:** FULL OUTER JOIN, COALESCE, CASE statements, and variance calculations.  
+- **SQL Concepts:** FULL OUTER JOIN, COALESCE, CASE statements, CTEs, and variance calculations.  
 - **Real-World Scenario:** Simulates FP&A tasks like budget tracking and variance analysis.  
 - **Business Value:** Identifies over/under budget trends to improve financial decision-making.  
 - **Deliverables:** SQL script, sample CSV datasets, and actionable insights.
@@ -40,38 +40,50 @@ This project demonstrates how SQL can streamline **data preparation and reportin
 ---
 
 ## Technical Approach
-- **FULL OUTER JOIN** used to combine `budget` and `actuals` so no data is excluded.
-- **COALESCE()** applied to handle `NULL` values and provide default values like `'Unknown'`.
-- **Variance** calculated as `(actual_amount - budget_amount)`.
-- **CASE statements** classify records into:
+- Uses a **Common Table Expression (CTE)** to first combine budget and actuals with a **FULL OUTER JOIN** ensuring no data loss.
+- **COALESCE()** handles `NULL` values and ensures correct matching of department IDs and months.
+- Calculates **variance** as `(actual_amount - budget_amount)`.
+- Uses **CASE statements** to classify each record as:
   - `Over Budget`
   - `Under Budget`
   - `On Budget`
   - `No Budget` (missing budget)
   - `No Actuals` (missing actuals)
+- Joins with `departments` table to fetch readable department names.
 
 ---
 
 ## Core SQL Query
+
 ```sql
-SELECT 
-  COALESCE(d.department_name, 'Unknown') AS department,
-  COALESCE(b.month, a.month) AS month,
-  b.budget_amount,
-  a.actual_amount,
-  (a.actual_amount - b.budget_amount) AS variance,
-  CASE
-    WHEN b.budget_amount IS NULL THEN 'No Budget'
-    WHEN a.actual_amount IS NULL THEN 'No Actuals'
-    WHEN a.actual_amount > b.budget_amount THEN 'Over Budget'
-    WHEN a.actual_amount < b.budget_amount THEN 'Under Budget'
+-- Combine budget and actual spending data with FULL OUTER JOIN in a CTE
+WITH combined_budget_actuals AS (
+  SELECT
+    COALESCE(b.department_id, a.department_id) AS department_id,  -- Get department_id from either table
+    COALESCE(b.month, a.month) AS month,                         -- Get month from either table
+    b.budget_amount,
+    a.actual_amount
+  FROM budget b
+  FULL OUTER JOIN actuals a
+    ON b.department_id = a.department_id AND b.month = a.month
+)
+SELECT
+  COALESCE(d.department_name, 'Unknown') AS department,          -- Use department name or default 'Unknown'
+  c.month,
+  c.budget_amount,
+  c.actual_amount,
+  (c.actual_amount - c.budget_amount) AS variance,               -- Calculate variance
+  CASE                                                          -- Classify budget status
+    WHEN c.budget_amount IS NULL THEN 'No Budget'
+    WHEN c.actual_amount IS NULL THEN 'No Actuals'
+    WHEN c.actual_amount > c.budget_amount THEN 'Over Budget'
+    WHEN c.actual_amount < c.budget_amount THEN 'Under Budget'
     ELSE 'On Budget'
   END AS budget_status
-FROM budget b
-FULL OUTER JOIN actuals a 
-  ON b.department_id = a.department_id AND b.month = a.month
-FULL OUTER JOIN departments d 
-  ON COALESCE(b.department_id, a.department_id) = d.department_id;
+FROM combined_budget_actuals c
+LEFT JOIN departments d
+  ON c.department_id = d.department_id
+ORDER BY department, month;
 
 ```
 ---
