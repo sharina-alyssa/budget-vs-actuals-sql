@@ -75,45 +75,49 @@ FULL OUTER JOIN departments d
 
 ---
 
-## Results & Insights
-
-| Department | Month | Budget | Actual | Variance | Status       |
-| ---------- | ----- | ------ | ------ | -------- | ------------ |
-| Marketing  | Jan   | 20000  | 22000  | 2000     | Over Budget  |
-| Sales      | Jan   | 15000  | NULL   | NULL     | No Actuals   |
-| HR         | Jan   | 10000  | 8000   | -2000    | Under Budget |
+Results & Insights
+Department	Month	Budget	Actual	Variance	Status
+Marketing	Jan	20000	22000	2000	Over Budget
+Sales	Jan	15000	NULL	NULL	No Actuals
+HR	Jan	10000	8000	-2000	Under Budget
 
 Key Insights:
 
 Marketing overspent by $2,000 in January.
+
 The Sales department’s actuals are missing, which requires data validation.
+
 30% of departments were under budget in Q1, indicating potential cost-saving trends.
 
----
-
-## Technologies Used
-
+Technologies Used
 PostgreSQL – For SQL queries, joins, and variance analysis.
+
 Excel / Power BI – For optional visualization and pivot tables.
+
 CSV Data Files – For budget, actuals, and department datasets.
+
 GitHub – Version control and documentation.
 
----
-
-## How to Reproduce
-
+How to Reproduce
 Clone this repository:
 
+bash
+Copy code
 git clone https://github.com/sharina-alyssa/budget-vs-actuals-sql.git
 Create tables for departments, budget, and actuals in PostgreSQL.
 
 Import the CSV files from the data folder into their respective tables.
+
 Run the SQL script in scripts/budget_vs_actuals_analysis.sql.
-Export results to CSV or visualize them in Excel/Power B
 
-## Future Improvements
+Export results to CSV or visualize them in Excel/Power BI.
 
+Future Improvements
 Automate report generation with scheduled SQL jobs or Python scripts.
+
 Add forecasting models based on historical spending trends.
+
 Build interactive dashboards in Power BI to visualize variances dynamically.
+
 Implement data validation checks to flag missing or inconsistent data.
+---
