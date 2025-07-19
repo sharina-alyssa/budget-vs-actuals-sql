@@ -96,8 +96,8 @@ This project demonstrates how SQL can streamline **data preparation and reportin
 
 ---
 
-## Core SQL Query 
-'''sql
+## Core SQL Query
+```sql
 SELECT 
   COALESCE(d.department_name, 'Unknown') AS department,
   COALESCE(b.month, a.month) AS month,
