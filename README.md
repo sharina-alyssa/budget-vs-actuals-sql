@@ -106,10 +106,10 @@ ORDER BY department, month;
 | Sales       | 2024-01  | 25,000  | 24,000  | -1,000   | Under Budget  |
 
 ### Key Insights:
-- **Marketing** overspent by **$2,000** in January.  
-- **Sales** was **$1,000 under budget**, indicating cost control.  
 - **Engineering** has no actuals recorded – data validation needed.  
 - **HR** spent **$15,000** without a budget – requires financial review.
+- **Marketing** overspent by **$2,000** in January.  
+- **Sales** was **$1,000 under budget**, indicating cost control.  
 
 ---
 
