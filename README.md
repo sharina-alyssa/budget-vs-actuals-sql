@@ -56,11 +56,10 @@ This project demonstrates how SQL can streamline **data preparation and reportin
 ## Core SQL Query
 
 ```sql
--- Combine budget and actual spending data with FULL OUTER JOIN in a CTE
 WITH combined_budget_actuals AS (
   SELECT
-    COALESCE(b.department_id, a.department_id) AS department_id,  -- Get department_id from either table
-    COALESCE(b.month, a.month) AS month,                         -- Get month from either table
+    COALESCE(b.department_id, a.department_id) AS department_id,
+    COALESCE(b.month, a.month) AS month,
     b.budget_amount,
     a.actual_amount
   FROM budget b
@@ -68,12 +67,12 @@ WITH combined_budget_actuals AS (
     ON b.department_id = a.department_id AND b.month = a.month
 )
 SELECT
-  COALESCE(d.department_name, 'Unknown') AS department,          -- Use department name or default 'Unknown'
+  COALESCE(d.department_name, 'Unknown') AS department,
   c.month,
   c.budget_amount,
   c.actual_amount,
-  (c.actual_amount - c.budget_amount) AS variance,               -- Calculate variance
-  CASE                                                          -- Classify budget status
+  (c.actual_amount - c.budget_amount) AS variance,
+  CASE
     WHEN c.budget_amount IS NULL THEN 'No Budget'
     WHEN c.actual_amount IS NULL THEN 'No Actuals'
     WHEN c.actual_amount > c.budget_amount THEN 'Over Budget'
