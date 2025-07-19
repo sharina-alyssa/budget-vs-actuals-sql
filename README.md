@@ -72,7 +72,7 @@ FULL OUTER JOIN actuals a
   ON b.department_id = a.department_id AND b.month = a.month
 FULL OUTER JOIN departments d 
   ON COALESCE(b.department_id, a.department_id) = d.department_id;
-
+''' 
 ---
 
 ## Results & Insights
