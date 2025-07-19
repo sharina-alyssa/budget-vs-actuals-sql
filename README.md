@@ -100,8 +100,8 @@ ORDER BY department, month;
 
 | Department  | Month    | Budget  | Actual  | Variance | Status        |
 |-------------|----------|---------|---------|----------|---------------|
-| Engineering | 2024-01  | 30,000  | NULL    | NULL     | No Actuals    |
-| HR          | 2024-01  | NULL    | 15,000  | NULL     | No Budget     |
+| Engineering | 2024-01  | 30,000  | N/A     | N/A      | No Actuals    |
+| HR          | 2024-01  | N/A     | 15,000  | N/A      | No Budget     |
 | Marketing   | 2024-01  | 20,000  | 22,000  | 2,000    | Over Budget   |
 | Sales       | 2024-01  | 25,000  | 24,000  | -1,000   | Under Budget  |
 
