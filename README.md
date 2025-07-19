@@ -56,10 +56,11 @@ This project demonstrates how SQL can streamline **data preparation and reportin
 ## Core SQL Query
 
 ```sql
+-- Combine budget and actual spending data with FULL OUTER JOIN in a CTE
 WITH combined_budget_actuals AS (
   SELECT
-    COALESCE(b.department_id, a.department_id) AS department_id,
-    COALESCE(b.month, a.month) AS month,
+    COALESCE(b.department_id, a.department_id) AS department_id,  -- Get department_id from either table
+    COALESCE(b.month, a.month) AS month,  -- Get month from either table
     b.budget_amount,
     a.actual_amount
   FROM budget b
@@ -67,21 +68,29 @@ WITH combined_budget_actuals AS (
     ON b.department_id = a.department_id AND b.month = a.month
 )
 SELECT
+  -- Get the department name from departments table; if NULL, default to 'Unknown'
   COALESCE(d.department_name, 'Unknown') AS department,
+  -- Select the month from combined results
   c.month,
+  -- Select the budgeted amount
   c.budget_amount,
+  -- Select the actual spending amount
   c.actual_amount,
+  -- Calculate variance as actual minus budget
   (c.actual_amount - c.budget_amount) AS variance,
+  -- Classify budget status based on comparison and presence of data
   CASE
-    WHEN c.budget_amount IS NULL THEN 'No Budget'
-    WHEN c.actual_amount IS NULL THEN 'No Actuals'
-    WHEN c.actual_amount > c.budget_amount THEN 'Over Budget'
-    WHEN c.actual_amount < c.budget_amount THEN 'Under Budget'
-    ELSE 'On Budget'
+    WHEN c.budget_amount IS NULL THEN 'No Budget'  -- No budget data available
+    WHEN c.actual_amount IS NULL THEN 'No Actuals'  -- No actual spending data available
+    WHEN c.actual_amount > c.budget_amount THEN 'Over Budget'  -- Spending exceeds budget
+    WHEN c.actual_amount < c.budget_amount THEN 'Under Budget'  -- Spending less than budget
+    ELSE 'On Budget'  -- Spending equals budget
   END AS budget_status
 FROM combined_budget_actuals c
+-- Join with departments table to get human-readable department names
 LEFT JOIN departments d
   ON c.department_id = d.department_id
+-- Order the results by department name and month for readability
 ORDER BY department, month;
 
 ```
