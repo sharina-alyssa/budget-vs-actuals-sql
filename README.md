@@ -116,7 +116,7 @@ ORDER BY department, month;
 ## Technologies Used
 
 - **PostgreSQL** – For SQL queries, joins, and variance analysis.  
-- **Excel / Power BI** – For optional visualization and pivot tables.  
+- **Excel** – For optional visualization and pivot tables.  
 - **CSV Data Files** – For budget, actuals, and department datasets.  
 - **GitHub** – Version control and documentation.
 
