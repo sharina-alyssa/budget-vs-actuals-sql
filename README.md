@@ -98,16 +98,18 @@ ORDER BY department, month;
 
 ## Results & Insights
 
-| Department | Month | Budget | Actual | Variance | Status       |
-|------------|-------|--------|--------|----------|--------------|
-| Marketing  | Jan   | 20000  | 22000  | 2000     | Over Budget  |
-| Sales      | Jan   | 15000  | NULL   | NULL     | No Actuals   |
-| HR         | Jan   | 10000  | 8000   | -2000    | Under Budget |
+| Department  | Month    | Budget  | Actual  | Variance | Status        |
+|-------------|----------|---------|---------|----------|---------------|
+| Engineering | 2024-01  | 30,000  | NULL    | NULL     | No Actuals    |
+| HR          | 2024-01  | NULL    | 15,000  | NULL     | No Budget     |
+| Marketing   | 2024-01  | 20,000  | 22,000  | 2,000    | Over Budget   |
+| Sales       | 2024-01  | 25,000  | 24,000  | -1,000   | Under Budget  |
 
 ### Key Insights:
-- Marketing overspent by $2,000 in January.  
-- The Sales department’s actuals are missing, which requires data validation.  
-- 30% of departments were under budget in Q1, indicating potential cost-saving trends.
+- **Marketing** overspent by **$2,000** in January.  
+- **Sales** was **$1,000 under budget**, indicating cost control.  
+- **Engineering** has no actuals recorded – data validation needed.  
+- **HR** spent **$15,000** without a budget – requires financial review.
 
 ---
 
