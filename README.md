@@ -110,8 +110,11 @@ ORDER BY department, month;
 ### Key Insights:
 
 **Engineering** has no actual spending recorded, which could indicate either missing data or a delay in reporting. This needs immediate data validation to ensure accurate variance analysis.
+
 **HR** spent $15,000 without an allocated budget, signaling a potential budget planning gap or unapproved spending. A financial review is required to verify and allocate these expenses properly.
+
 **Marketing** overspent by $2,000 in January, suggesting higher-than-expected campaign or promotional costs. Further analysis is needed to determine if this overspend was strategic or an overrun.
+
 **Sale**s was $1,000 under budget, which reflects effective cost control or possibly underutilization of allocated resources. This trend should be evaluated for potential cost savings or missed opportunities.
 
 ---
