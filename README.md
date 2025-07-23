@@ -105,13 +105,34 @@ ORDER BY department, month;
 | Marketing   | 2024-01  | 20,000  | 22,000  | 2,000    | Over Budget   |
 | Sales       | 2024-01  | 25,000  | 24,000  | -1,000   | Under Budget  |
 
+--- 
+
 ### Key Insights:
-- **Engineering** has no actuals recorded – data validation needed.  
-- **HR** spent **$15,000** without a budget – requires financial review.
-- **Marketing** overspent by **$2,000** in January.  
-- **Sales** was **$1,000 under budget**, indicating cost control.  
+
+**Engineering** has no actual spending recorded, which could indicate either missing data or a delay in reporting. This needs immediate data validation to ensure accurate variance analysis.
+**HR** spent $15,000 without an allocated budget, signaling a potential budget planning gap or unapproved spending. A financial review is required to verify and allocate these expenses properly.
+**Marketing** overspent by $2,000 in January, suggesting higher-than-expected campaign or promotional costs. Further analysis is needed to determine if this overspend was strategic or an overrun.
+**Sale**s was $1,000 under budget, which reflects effective cost control or possibly underutilization of allocated resources. This trend should be evaluated for potential cost savings or missed opportunities.
 
 ---
+
+### Conclusion & Next Steps ### 
+
+The analysis highlights areas requiring immediate management action:
+
+- Validate missing data for Engineering and investigate HR’s unbudgeted spending to ensure accurate financial tracking.
+- Review Marketing’s overspend to determine if adjustments in future budgets or cost controls are needed.
+- Leverage Sales’ under-budget performance to optimize resource allocation or reallocate unused funds.
+
+Next steps for management include improving the budgeting process, implementing real-time variance tracking, and enhancing forecasting models to prevent unplanned variances.
+
+## Visualization ## 
+
+To enhance insights, I created a **Budget vs. Actuals chart**:
+
+![Budget vs Actual Chart](images/budget_vs_actual_chart.png)
+
+--- 
 
 ## Technologies Used
 
